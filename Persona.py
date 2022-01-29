@@ -11,4 +11,4 @@ class Persona():
         self._posibilidad = posibilidad
 
     def __str__(self):
-        return f'Persona[ID: {self.idPersona}, Dosis: {self._dosis}, Posibilidad: {self._posibilidad}] \n'
+        return f'Persona[ID: {self.idPersona}, Dosis: {self._dosis}, Posibilidad: {self._posibilidad}]'

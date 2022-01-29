@@ -3,8 +3,8 @@ import random
 from Persona import Persona
 from Grupos import Grupos
 
-dias = 1
-contagiados = []
+dias = 0
+contagiados = {}
 personas = int(input(f'Ingrese el número de personas a evaluar: '))
 for i in range(1,personas):
     #creación de las personas a evaluar
@@ -62,12 +62,16 @@ for i in range(1,personas):
                 persona._posibilidad = grupo.contagio / 2
             else:
                 persona._posibilidad = grupo.contagio / 3
-        dias += 1
-        if dias>=80:
+        dias +=1
+        if dias>80:
             dias=0
-    #si la persona tiene el 100% de posibilidad de ser contagiado, pasará a ser persona contagiada
-    if persona._posibilidad == 1:
-        contagiados.append(persona)
-print(f'De {personas} personas se contagiaron {len(contagiados)}, lo que representa que el {len(contagiados)/personas*100}%')
+    #si la persona más del 50% de posibilidad de ser contagiado, pasará a ser persona contagiada
+    if persona._posibilidad > 0.5:
+        contagiados[dias]= persona
+
 for contagiado in contagiados:
-    print(contagiado)
+    # print(contagiado, end=':')
+    # print(contagiados[contagiado])
+    print(f'Día {contagiado}: {contagiados[contagiado]}')
+
+print(f'\n De {personas} personas se contagiaron {len(contagiados)}, lo que representa que el {len(contagiados)/personas*100}%')
